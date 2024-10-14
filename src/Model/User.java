@@ -3,6 +3,7 @@ package Model;
 public abstract class User {
     private String name;
     private String password;
+    protected String role;
 
     // Constructor
     public User(String name, String password) {
@@ -10,7 +11,7 @@ public abstract class User {
         this.password = password;
     }
 
-    // Getters and Setters
+    // Getters and Settears
     public String getName() {
         return name;
     }
@@ -27,6 +28,8 @@ public abstract class User {
         this.password = password;
     }
 
-    public abstract void displayRole();
+    public abstract String getRole();
+
+    public abstract void showCourses();
 }
 

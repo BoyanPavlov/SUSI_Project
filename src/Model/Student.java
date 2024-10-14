@@ -1,5 +1,8 @@
 package Model;
 
+import Controller.DataLoader;
+import Model.common.StringResources;
+
 import java.util.List;
 
 public class Student extends User {
@@ -8,12 +11,14 @@ public class Student extends User {
     private int yearInUniversity;
     private List<Course> courses;
 
-    public Student(String name, String password, String facultyNumber, String group, int yearInUniversity, List<Course> courses) {
+    public Student(String name, String password, String facultyNumber
+            , String group, int yearInUniversity, List<Course> courses) {
         super(name, password);
         this.facultyNumber = facultyNumber;
         this.group = group;
         this.yearInUniversity = yearInUniversity;
-        this.courses = courses;
+        this.courses = DataLoader.getInstance().getBaseCourses();
+        this.role = StringResources.STUDENT;
     }
 
     // Getters and Setters
@@ -49,9 +54,22 @@ public class Student extends User {
         this.courses = courses;
     }
 
+    public void showCourses() {
+        System.out.println("\nCourses of a student with FN: " + facultyNumber + " are:\n");
+
+        if (courses != null && !courses.isEmpty()) {
+            for (Course course : courses) {
+                System.out.println(course.getName() + " - " + course.getTeacher() +
+                        " (" + course.getPeriod() + ")");
+            }
+        } else {
+            System.out.println("You don't have any courses.");
+        }
+    }
+
     @Override
-    public void displayRole() {
-        System.out.println("Role: Student");
+    public String getRole() {
+        return this.role;
     }
 }
 

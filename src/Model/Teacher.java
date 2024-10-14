@@ -1,5 +1,7 @@
 package Model;
 
+import Model.common.StringResources;
+
 import java.util.List;
 
 public class Teacher extends User {
@@ -8,6 +10,7 @@ public class Teacher extends User {
     public Teacher(String name, String password, List<Course> courses) {
         super(name, password);
         this.courses = courses;
+        this.role = StringResources.TEACHER;
     }
 
     // Getters and Setters
@@ -20,11 +23,11 @@ public class Teacher extends User {
     }
 
     // Method to display all courses taught by the teacher
+    @Override
     public void showCourses() {
-        System.out.println("Courses taught by " + getName() + ":");
         if (courses != null && !courses.isEmpty()) {
             for (Course course : courses) {
-                System.out.println(" - " + course.getName() + " (" + course.getPeriod() + ")");
+                System.out.println(course.getName() + " (" + course.getPeriod() + ")");
             }
         } else {
             System.out.println("No courses assigned.");
@@ -32,7 +35,7 @@ public class Teacher extends User {
     }
 
     @Override
-    public void displayRole() {
-        System.out.println("Role: Teacher");
+    public String getRole() {
+        return this.role;
     }
 }
