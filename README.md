@@ -1,6 +1,6 @@
 # University Course Management System
 
-This is a simple University Course Management System built using Java. The system simulates basic functionality such as user login, viewing courses. Users can be either students or teachers, each having specific roles and functionalities within the system.
+This is a simple University Course Management System built using Java. The system simulates basic functionality such as user login, viewing their courses, also all courses, logout. Users can be either students or teachers, each having specific roles and functionalities within the system.
 
 ## Features
 
@@ -32,7 +32,7 @@ This is a simple University Course Management System built using Java. The syste
 ### 3. **View Layer** (`view` package)
    This layer is responsible for the user interface (console-based in this case).
    
-   - **ConsoleView**: Displays the login screen and the post-login options (view courses, log out). It handles input from the user and communicates with the `UserController` to manage the flow.
+   - **ConsoleView**: Displays the login screen and the post-login options (view courses, log out ...). It handles input from the user and communicates with the `UserController` to manage the flow.
 
 ## Predefined Data
 
@@ -40,12 +40,14 @@ This is a simple University Course Management System built using Java. The syste
 - **Armyanov**: Teaches OOP
 - **Velikova**: Teaches Linear Algebra and Second Algebra
 - **Alexandrov**: Teaches Geometry
+- **Geogriev**: Teaches Bridge
 
 ### Courses
 - **OOP**: Fall 2024, taught by Armyanov, capacity: 30 students
 - **Linear Algebra**: Fall 2024, taught by Velikova, capacity: 25 students
 - **Second Algebra**: Summer 2025, taught by Velikova, capacity: 25 students
 - **Geometry**: Spring 2024, taught by Alexandrov, capacity: 20 students
+- **Bridge**: check by yourself ;)
 
 ### Users and Credentials
 - **Student login**:
