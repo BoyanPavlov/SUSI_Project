@@ -1,4 +1,4 @@
-package ServiceAutorization;
+package Model.ServiceAutorization;
 
 public interface AuthService {
 
