@@ -1,7 +1,10 @@
 package Controller;
 
-import Model.Student;
-import Model.User;
+import Model.*;
+import Model.common.StringResources;
+
+import java.util.List;
+import java.util.Objects;
 
 
 public class UserController {
@@ -11,20 +14,70 @@ public class UserController {
     // Simulated login method (authentication placeholder)
     public boolean login(String username, String password) {
         // Here, we just check if the username matches and the password is "password123"
-        // Replace this with actual authentication logic (e.g., database lookup)
-        if ("student".equals(username) && "password123".equals(password)) {
-            loggedInUser = new Student("Bobby", password, "FN12345", "Group A", 2, null);
-            return true;
-        } else if ("teacher".equals(username) && "password123".equals(password)) {
-            loggedInUser = DataLoader.getInstance().getAllTeachers().get(0);
-            return true;
-        } else {
-            return false;
+
+        List<Teacher> allTeachers = DataLoader.getInstance().getAllTeachers();
+        List<Student> allStudents = DataLoader.getInstance().getAllStudents();
+        List<Admin> allAdmins = DataLoader.getInstance().getAllAdmins();
+
+        for (Student student : allStudents) {
+            if (student.getName().equals(username) && student.getPassword().equals(password)) {
+                loggedInUser = student;
+                return true;
+            }
         }
+
+        for (Teacher teacher : allTeachers) {
+            if (teacher.getName().equals(username) && teacher.getPassword().equals(password)) {
+                loggedInUser = teacher;
+                return true;
+            }
+        }
+
+        for (Admin admin : allAdmins) {
+            if (admin.getName().equals(username) && admin.getPassword().equals(password)) {
+                loggedInUser = admin;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void showUserCourses() {
-        loggedInUser.showCourses();
+        if (loggedInUser instanceof Teacher teacher) {
+            if (!Objects.equals(teacher.getName(), StringResources.UNKNOWN))
+                teacher.showCourses();
+        } else if (loggedInUser instanceof Student student) {
+            student.showCourses();
+        }
+    }
+
+    public void showAdditionalCourses() {
+        if (loggedInUser instanceof Student) {
+            ((Student) loggedInUser).showAdditionalCourses();
+        }
+    }
+
+    public Course getAdditionalCourse(String input) {
+        Course result = null;
+        List<Course> additionalCourses = DataLoader.getInstance().getAdditionalCourses();
+
+        for (Course course : additionalCourses) {
+            if (course.getName().equals(input)) {
+                result = course;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public void addAdditionalCourse(Course course) {
+        if (loggedInUser instanceof Student) {
+            ((Student) loggedInUser).addCourse(course);
+        } else if (loggedInUser instanceof Teacher) {
+            ((Teacher) loggedInUser).addCourse(course);
+        }
+
     }
 
     public User getLoggedInUser() {
