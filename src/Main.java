@@ -7,17 +7,25 @@ public class Main {
 
         // Start the app with login
         view.showLogin();
-        view.showMenu();
+        view.showUserInterface();
     }
 }
 
 /*
 Based on the input, the UserController simulates a login
 (you can use
-student
+
+student:
+Bobby
 password123
 or
-teacher
+
+teacher:
+Armyanov
 password123
-as valid credentials).
+or
+
+admin:
+Addy
+123
 */
